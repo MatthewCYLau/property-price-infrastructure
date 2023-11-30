@@ -2,6 +2,10 @@ resource "google_storage_bucket" "assets" {
   name          = "property-price-engine-assets"
   location      = "EUROPE-WEST2"
   storage_class = "STANDARD"
+
+  labels = {
+    app = var.application_name
+  }
 }
 
 data "google_iam_policy" "this" {
