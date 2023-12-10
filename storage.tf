@@ -1,7 +1,7 @@
 resource "google_storage_bucket" "assets" {
-  name          = "property-price-engine-assets"
-  location      = "EUROPE-WEST2"
-  storage_class = "STANDARD"
+  name                        = "property-price-engine-assets"
+  location                    = "EUROPE-WEST2"
+  storage_class               = "STANDARD"
   uniform_bucket_level_access = true
 
   labels = {

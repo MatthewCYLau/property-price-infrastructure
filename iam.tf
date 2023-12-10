@@ -10,6 +10,6 @@ resource "google_project_iam_member" "api_object_create" {
   condition {
     title       = "resource_name_starts_with_assets_bucket"
     description = "Resource name starts with assets storage bucket"
-    expression  = "resource.name.startsWith(\"projects/_/buckets/property-price-engine-assets/objects/\")"
+    expression  = "resource.name.startsWith(\"projects/_/buckets/${google_storage_bucket.assets.name}/objects/\")"
   }
 }
