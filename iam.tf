@@ -13,3 +13,9 @@ resource "google_project_iam_member" "api_object_create" {
     expression  = "resource.name.startsWith(\"projects/_/buckets/${google_storage_bucket.assets.name}/objects/\")"
   }
 }
+
+resource "google_project_iam_member" "api_pubsub_publish" {
+  project = var.project
+  role    = "roles/pubsub.publisher"
+  member  = "serviceAccount:${google_service_account.api.email}"
+}
