@@ -19,3 +19,14 @@ resource "google_project_iam_member" "api_pubsub_publish" {
   role    = "roles/pubsub.publisher"
   member  = "serviceAccount:${google_service_account.api.email}"
 }
+
+resource "google_service_account" "ingest" {
+  account_id   = "${var.application_name}-ingest"
+  display_name = "Service Account for ${var.application_name} Cloud Run ingest service"
+}
+
+resource "google_project_iam_member" "ingest_pubsub_subscribe" {
+  project = var.project
+  role    = "roles/pubsub.subscriber"
+  member  = "serviceAccount:${google_service_account.ingest.email}"
+}

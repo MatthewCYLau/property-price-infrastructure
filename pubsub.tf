@@ -27,7 +27,13 @@ resource "google_pubsub_schema" "job" {
     "fields" : [
       {
         "name" : "PostCode",
-        "type" : "string"
+        "type" : "string",
+        "default": ""
+      },
+      {
+        "name" : "JobId",
+        "type" : "string",
+        "default": ""
       }
     ]
     }
