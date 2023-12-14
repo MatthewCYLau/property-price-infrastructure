@@ -30,3 +30,14 @@ resource "google_project_iam_member" "ingest_pubsub_subscribe" {
   role    = "roles/pubsub.subscriber"
   member  = "serviceAccount:${google_service_account.ingest.email}"
 }
+
+resource "google_service_account" "ingest_invoker" {
+  account_id   = "scheduled-ingest-invoker"
+  display_name = "Service Account for ${var.application_name} Cloud Run ingest scheduled invoker"
+}
+
+resource "google_project_iam_member" "ingest_invoker" {
+  project = var.project
+  role    = "roles/run.invoker"
+  member  = "serviceAccount:${google_service_account.ingest_invoker.email}"
+}

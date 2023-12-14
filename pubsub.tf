@@ -28,12 +28,12 @@ resource "google_pubsub_schema" "job" {
       {
         "name" : "PostCode",
         "type" : "string",
-        "default": ""
+        "default" : ""
       },
       {
         "name" : "JobId",
         "type" : "string",
-        "default": ""
+        "default" : ""
       }
     ]
     }
