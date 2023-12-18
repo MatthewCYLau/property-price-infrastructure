@@ -1,7 +1,7 @@
 resource "google_cloud_scheduler_job" "ingest" {
   name             = "${var.application_name}-scheduled-ingest"
   description      = "${var.application_name} scheduled ingest"
-  schedule         = "*/10 * * * *"
+  schedule         = "*/5 * * * *"
   attempt_deadline = "320s"
   region           = var.region
   project          = var.project
