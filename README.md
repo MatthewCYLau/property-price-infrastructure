@@ -13,6 +13,7 @@ The list of repositories are as follow:
 ```bash
 gcloud auth login
 gcloud auth application-default login
+cd deploy/app
 terraform init # initialises Terraform
 terraform apply # deploys GCP stack
 terraform destroy # destroys GCP stack
