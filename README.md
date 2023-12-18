@@ -2,6 +2,8 @@
 
 Google Cloud Platform (GCP) infrastructure for Property Price Engine
 
+![provision infrastructure workflow](https://github.com/MatthewCYLau/property-price-infrastructure/actions/workflows/provision-infrastructure.yml/badge.svg)
+
 The list of repositories are as follow:
 
 - ASP.NET Core web API repository [here](https://github.com/MatthewCYLau/property-price-api)
