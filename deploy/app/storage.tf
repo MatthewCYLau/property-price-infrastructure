@@ -4,9 +4,7 @@ resource "google_storage_bucket" "assets" {
   storage_class               = "STANDARD"
   uniform_bucket_level_access = true
   force_destroy               = true
-  labels = {
-    app = var.application_name
-  }
+  labels                      = local.labels
 }
 
 resource "google_storage_bucket_iam_member" "all_users_view" {

@@ -4,18 +4,14 @@ resource "google_pubsub_topic" "jobs" {
     schema   = "projects/${var.project}/schemas/${google_pubsub_schema.job.name}"
     encoding = "JSON"
   }
-  labels = {
-    "app" = var.application_name
-  }
+  labels = local.labels
 }
 
 resource "google_pubsub_subscription" "jobs" {
   name                 = "ingest-jobs-subscription"
   topic                = google_pubsub_topic.jobs.name
   ack_deadline_seconds = 20
-  labels = {
-    "app" = var.application_name
-  }
+  labels               = local.labels
 }
 
 resource "google_pubsub_schema" "job" {
