@@ -39,7 +39,7 @@ jobs:
         run: terraform plan -out=terraform.tfplan
       - uses: actions/upload-artifact@v4
         with:
-          path: ./terraform.tfplan
+          path: terraform.tfplan
           name: artifact
   terraform-apply:
     name: "Terraform apply"
