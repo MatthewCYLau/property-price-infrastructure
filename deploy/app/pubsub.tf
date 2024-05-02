@@ -10,7 +10,7 @@ resource "google_pubsub_topic" "jobs" {
 resource "google_pubsub_subscription" "jobs" {
   name                       = "ingest-jobs-subscription"
   topic                      = google_pubsub_topic.jobs.name
-  ack_deadline_seconds       = 30
+  ack_deadline_seconds       = 20
   message_retention_duration = "86400s" # one day
   retain_acked_messages      = true
   labels                     = local.labels

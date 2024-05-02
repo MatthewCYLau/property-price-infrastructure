@@ -12,8 +12,8 @@ env:
   TF_APP_WORKDIR: ./deploy/app
 
 jobs:
-  terraform-apply:
-    name: "Terraform apply"
+  terraform-plan:
+    name: "Terraform plan"
     runs-on: ubuntu-latest
     permissions:
       contents: "read"
@@ -37,5 +37,35 @@ jobs:
         run: terraform init
       - name: Terraform Plan
         run: terraform plan -out=terraform.tfplan
+      - uses: actions/upload-artifact@v4
+        with:
+          path: ./terraform.tfplan
+          name: artifact
+  terraform-apply:
+    name: "Terraform apply"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: "read"
+      id-token: "write"
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ env.TF_APP_WORKDIR }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/download-artifact@v4
+        with:
+          name: artifact
+      - id: "auth"
+        name: "Authenticate to Google Cloud"
+        uses: "google-github-actions/auth@v2"
+        with:
+          workload_identity_provider: ${{ secrets.PROVIDER_NAME }}
+          service_account: ${{ secrets.SA_EMAIL }}
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+      - name: Terraform Init
+        run: terraform init
       - name: Terraform Apply
         run: terraform apply -input=false -auto-approve terraform.tfplan
