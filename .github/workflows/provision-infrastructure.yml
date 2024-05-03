@@ -45,6 +45,8 @@ jobs:
     name: "Terraform apply"
     runs-on: ubuntu-latest
     needs: terraform-plan
+    environment:
+      name: production
     permissions:
       contents: "read"
       id-token: "write"
