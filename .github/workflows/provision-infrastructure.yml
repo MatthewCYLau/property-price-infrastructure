@@ -34,7 +34,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
       - name: Terraform Init
-        run: terraform init
+        run: terraform init -upgrade
       - name: Terraform Plan
         run: terraform plan -out=terraform.tfplan
       - uses: actions/upload-artifact@v4
@@ -70,6 +70,6 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
       - name: Terraform Init
-        run: terraform init
+        run: terraform init -upgrade
       - name: Terraform Apply
         run: terraform apply -input=false -auto-approve terraform.tfplan
