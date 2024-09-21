@@ -41,3 +41,26 @@ resource "google_project_iam_member" "ingest_invoker" {
   role    = "roles/run.invoker"
   member  = "serviceAccount:${google_service_account.ingest_invoker.email}"
 }
+
+resource "google_service_account" "object_viewer" {
+  account_id   = "object-viewer-001"
+  display_name = "Service Account for ${var.application_name} object viewer"
+}
+
+resource "google_project_iam_member" "object_viewer" {
+  project = var.project
+  role    = "roles/storage.objectViewer"
+  member  = "serviceAccount:${google_service_account.object_viewer.email}"
+}
+
+resource "google_project_iam_member" "storage_insights_collector" {
+  project = var.project
+  role    = "roles/storage.insightsCollectorService"
+  member  = "serviceAccount:${google_service_account.object_viewer.email}"
+}
+
+resource "google_service_account_iam_member" "object_viewer_sa_token_creator" {
+  service_account_id = google_service_account.object_viewer.name
+  role               = "roles/iam.serviceAccountTokenCreator"
+  member             = "user:lau.cy.matthew@gmail.com"
+}
