@@ -1,3 +1,4 @@
+/*
 resource "google_compute_network" "network1" {
   name                    = "vpc-network-1"
   auto_create_subnetworks = false
@@ -33,3 +34,4 @@ resource "google_compute_network_peering" "peering2to1" {
   network      = google_compute_network.network2.id
   peer_network = google_compute_network.network1.id
 }
+*/
